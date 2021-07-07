@@ -224,10 +224,21 @@
                                 android:orientation="vertical">
 
 
+                               <!-- <ProgressBar
+                                    android:id="@+id/Progressbar"
+                                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                    android:layout_width="wrap_content"
+                                    android:tooltipText="fetching facilities"
+                                    android:layout_height="wrap_content"/> -->
+
+
                                 <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                                     android:id="@+id/facilitySpinner"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
+                                    android:layout_height="wrap_content"
+
+
+                                    />
 
 
                                 <com.toptoche.searchablespinnerlibrary.SearchableSpinner
@@ -241,6 +252,12 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="@dimen/spacing_xxlarge"
                                     android:drawSelectorOnTop="true" />
+
+                             <!--   <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                                    android:id="@+id/partner"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/spacing_xxlarge"
+                                    android:drawSelectorOnTop="true" /> -->
 
 
                             </LinearLayout>
@@ -393,7 +410,8 @@
                                     <RadioButton
                                         android:id="@+id/dose_two_no"
                                         android:layout_width="0dp"
-                                        android:layout_weight="1"                    android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:layout_height="wrap_content"
                                         android:layout_gravity="center"
                                         android:padding="10dp"
                                         android:text="@string/dose2_no" />

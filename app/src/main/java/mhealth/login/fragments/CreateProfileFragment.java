@@ -1,6 +1,7 @@
 package mhealth.login.fragments;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -65,6 +67,9 @@ public class CreateProfileFragment extends Fragment {
     private Unbinder unbinder;
     private View root;
     private Context context;
+    private int progress=10;
+
+    ProgressDialog progressDialog;
 
 
     ArrayList<String> facilitiesList;
@@ -76,16 +81,24 @@ public class CreateProfileFragment extends Fragment {
     ArrayList<String> cadreList;
     ArrayList<Cadre> cadres;
 
+    ArrayList<String> partnerList;
+    ArrayList<Cadre> partners;
+
+
+
     private User loggedInUser;
     private int facilityID = 0;
     private int facilityDepartmentID = 0;
     private int cadreID = 0;
+    private int partnerID = 0;
     private String first_dose = "";
     private String second_dose = "";
     private String third_dose = "";
     private String DOB = "";
 
 
+   // @BindView(R.id.Progressbar)
+   // ProgressBar progressBar;
 
     @BindView(R.id.facilitySpinner)
     SearchableSpinner facilitySpinner;
@@ -95,6 +108,9 @@ public class CreateProfileFragment extends Fragment {
 
     @BindView(R.id.cadre)
     SearchableSpinner cadreSpinner;
+
+   /* @BindView(R.id.partner)
+    SearchableSpinner partnerSpinner;*/
 
     @BindView(R.id.id_no)
     EditText id_no;
@@ -161,6 +177,10 @@ public class CreateProfileFragment extends Fragment {
         cadreSpinner.setTitle("Select Cadre");
         cadreSpinner.setPositiveButton("OK");
 
+
+        /*partnerSpinner.setTitle("Select Partner");
+        partnerSpinner.setPositiveButton("OK");*/
+
         tv_dob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,7 +196,7 @@ public class CreateProfileFragment extends Fragment {
         });
 
         dose2_date.setOnClickListener(new View.OnClickListener() {
-            @Override
+           @Override
             public void onClick(View v) {
                 getDoseDate(2);
             }
@@ -273,12 +293,50 @@ public class CreateProfileFragment extends Fragment {
     }
 
     private void getFacilities() {
+        ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Fetching facilities");
+        progressDialog.setMessage("Please wait");
+        progressDialog.setMax(100);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        //progressDialog.setProgressStyle(progressDialog.STYLE_SPINNER);
+        progressDialog.show();
+        //progressDialog.setContentView(R.layout.progress);
+        progressDialog.setCancelable(false);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                while (progress<100){
+
+                    try {
+                        Thread.sleep(760);
+                        progress++;
+                        progressDialog.setProgress(progress);
+
+                    }catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+
+
+                }
+
+            }
+        }).start();
+
+
+
+
+
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                 Stash.getString(Constants.END_POINT)+Constants.FACILITIES, null, new Response.Listener<JSONObject>() {
+
 
             @Override
             public void onResponse(JSONObject response) {
 //                Log.d(TAG, response.toString());
+
+                progressDialog.dismiss();
 
                 try {
 
@@ -291,6 +349,7 @@ public class CreateProfileFragment extends Fragment {
                     {
 //                        Stash.clear(Constants.DISTRICTS_ARRAYLIST);
 //                        Stash.clear(Constants.DISTRICTS_LIST);
+
 
                         facilities = new ArrayList<Facility>();
                         facilitiesList = new ArrayList<String>();
@@ -319,17 +378,27 @@ public class CreateProfileFragment extends Fragment {
                         facilitiesList.add("--select facility--");
 
 
+
 //                        Stash.put(Constants.DISTRICTS_ARRAYLIST, facilities);
 //                        Stash.put(Constants.DISTRICTS_LIST, facilitiesList);
 
+                        //progressBar.setVisibility(View.VISIBLE);
+
+
+
+
                         ArrayAdapter<String> aa=new ArrayAdapter<String>(context,
                                 android.R.layout.simple_spinner_dropdown_item,
-                                facilitiesList){
+                                facilitiesList)
+                        {
                             @Override
                             public int getCount() {
                                 return super.getCount(); // you dont display last item. It is used as hint.
                             }
                         };
+
+                        //progressBar.setVisibility(View.GONE);
+                        //progressDialog.dismiss();
 
                         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -378,6 +447,7 @@ public class CreateProfileFragment extends Fragment {
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
 
                 VolleyLog.e(TAG, "Error: " + error.getMessage());
                 Snackbar snackbar = Snackbar.make(root.findViewById(R.id.fragment_create_profile), VolleyErrors.getVolleyErrorMessages(error, getContext()), Snackbar.LENGTH_LONG);
@@ -855,6 +925,19 @@ public class CreateProfileFragment extends Fragment {
 
 
 
+
+/*public void  showProgres(){
+
+    ProgressDialog progressDialog = new ProgressDialog(getContext());
+    progressDialog.setTitle("Fetching facilities");
+    progressDialog.setMessage("Please wait");
+    //progressDialog.setProgressStyle(progressDialog.STYLE_SPINNER);
+    progressDialog.show();
+    //progressDialog.setContentView(R.layout.progress);
+    progressDialog.setCancelable(false);
+
+
+}*/
 
 
 

@@ -256,7 +256,7 @@ public class LoginFragment extends Fragment {
                         Intent intent = new Intent(context, MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
-                        Objects.requireNonNull(getActivity()).finish();
+                        requireActivity().finish();
 
                     }else {
                         InfoMessage bottomSheetFragment = InfoMessage.newInstance(message,errors,context);

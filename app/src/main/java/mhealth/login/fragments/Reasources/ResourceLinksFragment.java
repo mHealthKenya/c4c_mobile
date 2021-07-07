@@ -12,6 +12,7 @@ import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import mhealth.login.MainSurveyLinks;
 import mhealth.login.R;
 import mhealth.login.adapters.FAQsAdapter;
 import mhealth.login.dependencies.Constants;
@@ -72,6 +74,11 @@ public class ResourceLinksFragment extends Fragment {
     @BindView(R.id.lk10)
     TextView lk10;
 
+    @BindView(R.id.lk11)
+    TextView lk11;
+
+    //TextView textLink;
+
 
 
 
@@ -92,6 +99,7 @@ public class ResourceLinksFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
 
     @Override
@@ -107,6 +115,19 @@ public class ResourceLinksFragment extends Fragment {
 
         setLinks();
 
+        lk11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent intent = new Intent(context, MainSurveyLinks.class);
+               startActivity(intent);
+
+                //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://survey.mhealthkenya.co.ke/survey/healthcare-worker-survey/view/9")));
+
+                //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://survey.mhealthkenya.co.ke/survey/safe-phlebotomy-training-workshop-evaluation/view/10")));
+
+            }
+        });
+
 
 
         return root;
@@ -117,6 +138,8 @@ public class ResourceLinksFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
     }
+
+
 
 
     private void setLinks(){
@@ -133,6 +156,10 @@ public class ResourceLinksFragment extends Fragment {
             String link9="https://c4c.mhealthkenya.co.ke/assets/IPC/NATIONAL-GUIDELINES-FOR-HEALTHY-DIETS-AND-PHYSICAL-ACTIVITY-2017-NEW-EDIT.pdf";
             String link10="https://c4c.mhealthkenya.co.ke/assets/IPC/National-Palliative-Care-Guidelines.pdf";
 
+            //String link11="https://survey.mhealthkenya.co.ke";
+
+
+
             setLinkToText(lk1.getText().toString(),lk1.getText().toString().length(),lk1,link1);
             setLinkToText(lk2.getText().toString(),lk2.getText().toString().length(),lk2,link2);
             setLinkToText(lk3.getText().toString(),lk3.getText().toString().length(),lk3,link3);
@@ -143,6 +170,8 @@ public class ResourceLinksFragment extends Fragment {
             setLinkToText(lk8.getText().toString(),lk8.getText().toString().length(),lk8,link8);
             setLinkToText(lk9.getText().toString(),lk9.getText().toString().length(),lk9,link9);
             setLinkToText(lk10.getText().toString(),lk10.getText().toString().length(),lk10,link10);
+
+            //setLinkToText(lk11.getText().toString(),lk11.getText().toString().length(),lk11,link10);
 
         }
         catch(Exception e){

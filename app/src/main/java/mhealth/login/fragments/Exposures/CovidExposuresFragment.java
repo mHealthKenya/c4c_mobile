@@ -165,7 +165,6 @@ public class CovidExposuresFragment extends Fragment {
 
 
     private void firstLoad() {
-
         myShouldLoadMore =false;
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,

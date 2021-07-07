@@ -168,12 +168,12 @@ public class RegisterFragment extends Fragment {
             return valid;
         }
 
-        if(TextUtils.isEmpty(email.getText().toString()))
-        {
-            email.setError(getString(R.string.email_required));
-            valid = false;
-            return valid;
-        }
+       // if(TextUtils.isEmpty(email.getText().toString()))
+        //{
+          //  email.setError(getString(R.string.email_required));
+            //valid = false;
+            //return valid;
+        //}
 
         if(gender.getSelectedItem().toString().equals("Please select your gender"))
         {
@@ -187,7 +187,6 @@ public class RegisterFragment extends Fragment {
             valid = false;
             return valid;
         }
-
         if(TextUtils.isEmpty(input_password.getText().toString()))
         {
             input_password.setError(getString(R.string.password_required));

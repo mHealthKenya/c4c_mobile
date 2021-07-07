@@ -956,6 +956,24 @@ public class ReportCovidExposureFragment extends Fragment {
             payload.put("subcounty_id", subCountyID);
             payload.put("ward_id", wardID);
 
+            //added default
+            payload.put("facility_of_exposure_id", 1);
+            payload.put("procedure_performed", "Aerosal generating activity");
+            payload.put("direct_covid_envoronment_contact", 1);
+            payload.put("covid_specific_training", 1);
+            payload.put("risk_assessment_performed", 1);
+            payload.put("risk_assessement_outcome", "High risk");
+            payload.put("risk_assessment_recommendation","Stop working");
+            payload.put("risk_assessment_decision_date","2020-03-04");
+
+            payload.put("transmission_mode",1);
+            payload.put("direct_covid_environment_contact",1);
+            payload.put("pcr_test_done",1);
+            payload.put("exposure_management","Hospital Quarantine");
+
+
+
+
 
 
         } catch (JSONException e) {

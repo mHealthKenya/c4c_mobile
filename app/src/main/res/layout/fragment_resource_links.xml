@@ -76,10 +76,24 @@
                     android:orientation="vertical">
 
 
+
+                    <TextView
+                        android:id="@+id/lk11"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10sp"
+                        android:textStyle="italic"
+                        android:textSize="20sp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:text="Survey"
+                        android:textColor="#FF0000"
+                        android:layout_height="wrap_content" />
+
+
+
                     <TextView
                         android:id="@+id/lk1"
                         android:layout_width="match_parent"
-                        android:layout_marginBottom="10sp"
                         android:layout_marginTop="10sp"
                         android:textStyle="italic"
                         android:textSize="20sp"
