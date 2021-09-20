@@ -19,7 +19,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".PostSafe"></activity>
+        <activity android:name=".BloodCulture"></activity>
+        <activity android:name=".PostSafe" />
         <activity android:name=".SafePhlebotomy" />
         <activity android:name=".HealthCareW" />
         <activity android:name=".PreSafe" />

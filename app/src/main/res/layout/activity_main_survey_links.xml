@@ -135,4 +135,23 @@
         android:background="@android:color/darker_gray"/>
 
 
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/Blood_culture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/BloodCultureSpecimen"
+        android:layout_marginLeft="20dp"
+        android:textSize="20sp"
+        android:textColor="@color/blue_700"
+        android:clickable="true"
+        android:focusable="true"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray"/>
+
+
 </LinearLayout>

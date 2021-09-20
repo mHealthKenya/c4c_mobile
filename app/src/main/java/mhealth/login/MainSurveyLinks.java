@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class MainSurveyLinks extends AppCompatActivity {
 
-    TextView Linkone, Linktwo, Linkthree , Linkfour;
+    TextView Linkone, Linktwo, Linkthree , Linkfour, Linkfive;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +21,7 @@ public class MainSurveyLinks extends AppCompatActivity {
         Linktwo = findViewById(R.id.HealthCare);
         Linkthree = findViewById(R.id.Safe);
         Linkfour = findViewById(R.id.postSafe);
+        Linkfive = findViewById(R.id.Blood_culture);
 
 
         Linkone.setOnClickListener(new View.OnClickListener() {
@@ -67,5 +68,21 @@ public class MainSurveyLinks extends AppCompatActivity {
 
             }
         });
+
+        Linkfive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://survey.mhealthkenya.co.ke")));
+
+                Intent intent = new Intent(MainSurveyLinks.this, BloodCulture.class);
+                startActivity(intent);
+
+            }
+        });
+
+
+
+
     }
 }
